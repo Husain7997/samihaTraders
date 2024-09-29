@@ -10,8 +10,10 @@ import Contuct from "../Pages/Contuct";
 import Products from "../Pages/Products";
 import ErrorPage from "../Pages/ErrorPage";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Dashboard from "../Pages/Dashboard";
-import AddProduct from "../Pages/AddProduct";
+import Dashboard from "../Pages/DashboardPages/Dashboard";
+import AddProduct from "../Pages/DashboardPages/AddProduct";
+import ProductsList from "../Pages/DashboardPages/ProducstList";
+
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +64,11 @@ export const router = createBrowserRouter([
         {
           path: "dashboard/addproduct",
           element:<AddProduct/>
+        },
+        {
+          path: "dashboard/productlist",
+          element:<ProductsList/>
+
         },
       ],
     },

@@ -2,9 +2,10 @@ import { FaUser } from "react-icons/fa";
 import { GiWallet } from "react-icons/gi";
 import { IoMdWallet } from "react-icons/io";
 import { TbPointerDollar } from "react-icons/tb";
-import ListTable from "../Components/dashboard/ListTable";
-import UserList from "../Components/dashboard/UserList";
-import Chart from "../Components/dashboard/Chart";
+import ListTable from "../../Components/dashboard/ListTable";
+import UserList from "../../Components/dashboard/UserList";
+import Chart from "../../Components/dashboard/Chart";
+
 
 
 
