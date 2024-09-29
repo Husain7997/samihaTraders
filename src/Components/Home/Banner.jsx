@@ -1,5 +1,5 @@
 
-
+// https://vue.hibootstrap.com/pyle/
 const Banner = () => {
     return (
         <div className="carousel w-full">

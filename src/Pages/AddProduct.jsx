@@ -4,6 +4,7 @@ const AddProduct = () => {
     return (
         <div>
             add product
+            hfghdhg
         </div>
     );
 };

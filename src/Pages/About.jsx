@@ -1,9 +1,10 @@
-
+import aboutBanner from "../assets/gif/samihaTraders.gif";
 
 const About = () => {
     return (
         <div>
-            About
+            <img src={aboutBanner} className="w-full h-72" alt="banner" />
+            
         </div>
     );
 };
