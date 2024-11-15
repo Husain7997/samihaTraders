@@ -2,9 +2,17 @@ import { FaUser } from "react-icons/fa";
 import { GiWallet } from "react-icons/gi";
 import { IoMdWallet } from "react-icons/io";
 import { TbPointerDollar } from "react-icons/tb";
-import ListTable from "../../Components/dashboard/ListTable";
-import UserList from "../../Components/dashboard/UserList";
-import Chart from "../../Components/dashboard/Chart";
+import TopSale from "../../Components/dashboard/Chart/TopSale";
+import ThisWeeksSales from "../../Components/dashboard/Chart/ThisWeeksSales";
+import TopCustomerChart from "../../Components/dashboard/Chart/TopCustomerChart";
+import SalesTargetChart from "../../Components/dashboard/Chart/SalesTargetChart";
+import StockAlertTable from "../../Components/dashboard/StockAlertTable";
+import PaymentChart from "../../Components/dashboard/Chart/PaymentChart";
+import SalesTable from "../../Components/dashboard/SalesTable";
+import InvoiceTable from "../../Components/dashboard/InvoiceTable";
+// import ListTable from "../../Components/dashboard/ListTable";
+// import UserList from "../../Components/dashboard/UserList";
+// import Chart from "../../Components/dashboard/Chart";
 
 
 
@@ -15,7 +23,7 @@ import Chart from "../../Components/dashboard/Chart";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="bg-gray-100">
             <div className="-mx-3 flex flex-wrap justify-between p-8">
     
     <div className="w-full  px-4 md:w-1/2 lg:w-1/2">
@@ -69,9 +77,26 @@ const Dashboard = () => {
 
 
         </div>
-<ListTable></ListTable>
-        <UserList/>
-        <Chart/>
+
+<div className="flex w-full my-10 gap-7 justify-between">
+<TopSale className='w-1/3'></TopSale>
+<ThisWeeksSales className='w-2/3'></ThisWeeksSales>
+</div>
+<div className="flex w-ful">
+    <StockAlertTable className='w-1/2'></StockAlertTable>
+    <TopCustomerChart className='w-1/2'></TopCustomerChart>
+</div>
+<div className="flex justify-around">
+    <SalesTargetChart className='w-1/3'></SalesTargetChart>
+    <PaymentChart className='w-2/3'></PaymentChart>
+</div>
+<InvoiceTable></InvoiceTable>
+<SalesTable></SalesTable>
+
+
+{/* <ListTable></ListTable> */}
+        {/* <UserList/> */}
+        {/* <Chart/> */}
         </div>
 
        

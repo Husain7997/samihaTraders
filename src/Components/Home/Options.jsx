@@ -1,8 +1,8 @@
-import bgimg from '../../assets/bg1.jpeg';
+import bgimg from '../../assets/bg3.jpeg';
 
 const Options = () => {
     return (
-        <div className="flex flex-wrap items-center justify-center my-8 py-4 gap-3"
+        <div className="flex flex-wrap items-center justify-center rounded my-8 py-4 gap-3"
          style={{ backgroundImage: `url(${bgimg})`,
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",

@@ -1,53 +1,163 @@
-
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditProduct = () => {
-    return (
-        <div>
-          <div className="bg-white border border-4 rounded-lg shadow relative m-10">
+  const product = useLoaderData();
+  const { _id } = product;
+  const { productName, price, description, category, image } = product.product;
 
-<div className="flex items-start justify-between p-5 border-b rounded-t">
-    <h3 className="text-xl font-semibold">
-        Edit product
-    </h3>
-    <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="product-modal">
-       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </button>
-</div>
+  const { register, handleSubmit, reset, setValue } = useForm();
+  const [imageFile, setImageFile] = useState(null);
+  const [url, setUrl] = useState(image || ""); 
+  const [loading, setLoading] = useState(false);
 
-<div className="p-6 space-y-6">
-    <form action="#">
-        <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6 sm:col-span-3">
-                {/* <label for="product-name" className="text-sm font-medium text-gray-900 block mb-2">Product Name</label> */}
-                <input type="text" className=""name="product-name" id="product-name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Apple Imac 27”" required=""/>
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-                <label for="category" className="text-sm font-medium text-gray-900 block mb-2">Category</label>
-                <input type="text" name="category" id="category" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Electronics" required=""/>
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-                <label for="brand" className="text-sm font-medium text-gray-900 block mb-2">Brand</label>
-                <input type="text" name="brand" id="brand" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Apple" required=""/>
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-                <label for="price" className="text-sm font-medium text-gray-900 block mb-2">Price</label>
-                <input type="number" name="price" id="price" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="$2300" required=""/>
-            </div>
-            <div className="col-span-full">
-                <label for="product-details" className="text-sm font-medium text-gray-900 block mb-2">Product Details</label>
-                <textarea id="product-details" rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
-            </div>
+  useEffect(() => {
+    setValue("name", productName);
+    setValue("category", category);
+    setValue("price", price);
+    setValue("ProductDetails", description);
+  }, [productName, price, description, category, setValue]);
+
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
+  const uploadImage = async () => {
+    if (!imageFile) return url; // Return existing URL if no new image
+
+    const apiKey = "39fdb9b8bab7d98eef678287a7ea14aa";
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${apiKey}`,
+        formData
+      );
+      return response.data.data.url;
+    } catch (error) {
+      console.error("Error uploading the image:", error);
+      Swal.fire("Error", "Image upload failed!", "error");
+      return url; // Return existing URL if upload fails
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmit = async (data) => {
+    // Upload image and get URL
+    const imageUrl = await uploadImage();
+
+    const updatedProduct = {
+      productName: data.name,
+      category: data.category,
+      price: parseFloat(data.price),
+      description: data.ProductDetails,
+      image: imageUrl,
+    };
+
+    try {
+      const response = await axios.put(`http://localhost:5000/products/${_id}`, updatedProduct, {
+        headers: { "Content-Type": "application/json" },
+      });
+      
+      if (response.data.acknowledged) {
+        Swal.fire({
+          title: "Updated!",
+          text: "Your product was updated successfully.",
+          icon: "success",
+        });
+        reset();
+        setUrl(imageUrl); // Update with new image URL if changed
+      } else {
+        Swal.fire("No changes", "Product was not modified.", "info");
+      }
+    } catch (error) {
+      console.error("Error updating product:", error);
+      Swal.fire("Error", "Failed to update product.", "error");
+    }
+
+    setImageFile(null);
+  };
+
+  return (
+    <div className="py-12 w-full bg-stone-400 dark:bg-dark">
+      <h1 className="text-left text-lime-200 md:ml-16 text-4xl mb-6">Edit Product</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full px-10 mx-auto">
+        
+        <div className="form-control w-full mb-4">
+          <label className="label"><span className="label-text">Product Name*</span></label>
+          <input
+            type="text"
+            defaultValue={productName}
+            {...register("name")}
+            className="input input-bordered w-full"
+          />
         </div>
-    </form>
-</div>
 
-<div className="p-6 border-t border-gray-200 rounded-b">
-    <button className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Save all</button>
-</div>
+        <div className="flex gap-6">
+          <div className="form-control w-1/2 mb-4">
+            <label className="label"><span className="label-text">Category*</span></label>
+            <select defaultValue={category} {...register("category")} className="select select-bordered w-full">
+              <option value="">Select a category</option>
+              <option value="Light">Light</option>
+              <option value="Fan">Fan</option>
+              <option value="Cable">Cable</option>
+              <option value="Switch">Switch</option>
+              <option value="Socket">Socket</option>
+            </select>
+          </div>
 
-</div>  
+          <div className="form-control w-1/2 mb-4">
+            <label className="label"><span className="label-text">Price*</span></label>
+            <input
+              type="number"
+              defaultValue={price}
+              {...register("price")}
+              className="input input-bordered w-full"
+            />
+          </div>
         </div>
-    );
+
+        <div className="form-control mb-4">
+          <label className="label"><span className="label-text">Product Details</span></label>
+          <textarea
+            {...register("ProductDetails")}
+            className="textarea textarea-bordered h-24"
+            defaultValue={description}
+          ></textarea>
+        </div>
+
+        <div className="form-control mb-4">
+          <label className="label"><span className="label-text">Upload Image</span></label>
+          <div className="flex items-center">
+            <input
+              type="file"
+              onChange={handleImageChange}
+              className="file-input file-input-bordered w-full max-w-xs"
+            />
+            <button
+              type="button"
+              onClick={uploadImage}
+              className="btn ml-4"
+              disabled={loading}
+            >
+              {loading ? "Uploading..." : "Upload"}
+            </button>
+          </div>
+          {url && <img src={url} alt="Product" className="mt-4 w-32 rounded" />}
+        </div>
+
+        <button className="btn btn-accent w-full" type="submit">
+          Update Product
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default EditProduct;

@@ -31,7 +31,8 @@ const DashboardLayout = () => {
   {/* top menu start */}
   <div className="navbar-end i flex-none">
     <ul className="menu menu-horizontal px-1">
-      <li><a>POS</a></li>
+      
+      <li><Link to='dashboard/POSInterface'><a>POS</a></Link></li>
       <li>
         <details>
           <summary>Option</summary>
@@ -98,9 +99,9 @@ const DashboardLayout = () => {
           <SiExpensify className="text-8xl"/><p className="text-center">Expenses</p></div></summary>
           {/* submenu */}
           <ul className="p-1">
-          <li ><Link to='/login'><VscGitPullRequestCreate className="text-xl"/>  Create Expenses</Link></li>
-           <li><Link to='dashboard/addproduct'><FaList className="text-xl" /> Expenses List</Link></li>
-           <li><Link to='dashboard/addproduct'><MdCategory className="text-xl" />Expenses Category</Link></li>
+          <li ><Link to='dashboard/CreateExpenses'><VscGitPullRequestCreate className="text-xl"/>  Create Expenses</Link></li>
+           <li><Link to='dashboard/ExpensesList'><FaList className="text-xl" /> Expenses List</Link></li>
+           <li><Link to='dashboard/ExpensesCategory'><MdCategory className="text-xl" />Expenses Category</Link></li>
           </ul>
         </details>
         </li>
@@ -111,10 +112,10 @@ const DashboardLayout = () => {
           <LiaPercentageSolid className="text-8xl"/><p className="text-center">Sales</p></div></summary>
           {/* submenu */}
           <ul className="p-1">
-          <li className="flex"><Link to='/login'><div><VscGitPullRequestCreate className="text-xl"/> </div> <p>Create Sale </p></Link></li>
-           <li><Link to='dashboard/addproduct'><FaList className="text-xl" />Sales List</Link></li>
-           <li><Link to='dashboard/addproduct'><BsFilePostFill className="text-xl"/>POS</Link></li>
-           <li><Link to='dashboard/addproduct'><FaShippingFast className="text-xl" />Shipment</Link></li>
+          <li className="flex"><Link to='dashboard/CreateSale'><div><VscGitPullRequestCreate className="text-xl"/> </div> <p>Create Sale </p></Link></li>
+           <li><Link to='dashboard/SalesList'><FaList className="text-xl" />Sales List</Link></li>
+           <li><Link to='dashboard/POSInterface'><BsFilePostFill className="text-xl"/>POS</Link></li>
+           <li><Link to='dashboard/ShipmentList'><FaShippingFast className="text-xl" />Shipment</Link></li>
           </ul>
         </details>
         </li>
@@ -125,8 +126,8 @@ const DashboardLayout = () => {
           <TbTruckReturn  className="text-8xl"/><p className="text-center">Sale Return</p></div></summary>
           {/* submenu */}
           <ul className="p-1">
-           <li className="flex"><Link to='/login'><div><VscGitPullRequestCreate className="text-xl"/> </div> <p>Create Sale Return</p></Link></li> 
-           <li><Link to='dashboard/addproduct'> <FaList className="text-xl" />Sale Return List</Link></li>
+           <li className="flex"><Link to='dashboard/SalesReturnList'><div><VscGitPullRequestCreate className="text-xl"/> </div> <p>Sale Return </p></Link></li> 
+           <li><Link to='dashboard/SalesReturnList'> <FaList className="text-xl" />Sale Return List</Link></li>
           </ul>
         </details>
         </li>
@@ -139,9 +140,9 @@ const DashboardLayout = () => {
           <ul className="p-1">
            <li className="flex"><Link to='/login'> <MdCreditScore  className="text-xl" />
            Create Customer</Link></li> 
-           <li className="flex"><Link to='/login'> <FaList  className="text-xl" />
+           <li className="flex"><Link to='dashboard/CustomerList'> <FaList  className="text-xl" />
            Customer List</Link></li> 
-           <li className="flex"><Link to='/login'> <FaUser   className="text-xl" />
+           <li className="flex"><Link to='dashboard/UserList'> <FaUser   className="text-xl" />
            User List</Link></li> 
            
           </ul>
@@ -159,60 +160,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-// <div className="drawer">
-// {/* <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
-// <div className="drawer-content flex flex-col">
-//   {/* Navbar */}
-//   <div className="w-full navbar bg-base-300">
-//     <div className="">
-//       <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
-//         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-//       </label>
-//     </div> 
-//     <div className="flex-1 px-2 mx-2"><Link to="/">Samiha Traders</Link></div>
-//     <div className="flex-none hidden lg:block">
-//       <ul className="menu menu-horizontal">
-//         {/* Navbar menu content here */}
-//         <li><Link to="/">Home</Link></li>
-//         <li><a>Navbar Item 2</a></li>
-//         <li><a>Navbar Item 2</a></li>
-//         <li><a>Navbar Item 2</a></li>
-//         <li><a>Navbar Item 2</a></li>
-//       </ul>
-//     </div>
-//   </div>
-//   {/* Page content here */}
-//   <Outlet
-//   />
-// </div> 
-// <div className="drawer-side ">
-//   <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
-//   <ul className="menu p-4 w-80 min-h-full bg-base-200 menu-sm dropdown-content rounded-box z-[1] mt-3  shadow">
-//     {/* Sidebar content here */}
-//     <li><Link to="/">Home</Link></li>
-//     <li><a> Item 2
-//     <ul className="p-2">
-//     <li><a>Submenu 1</a></li>
-//     <li><a>Submenu 2</a></li>
-//   </ul>
-//       </a></li>
-//     <li><a> Item 3</a></li>
-//     <li><a>Item 4</a></li>
-//   </ul>
-//   <div className="navbar-center hidden lg:flex">
-//       <ul className="menu menu-horizontal px-1">
-// <li><a>Item 1</a></li>
-// <li>
-// <details>
-//   <summary>Parent</summary>
-//   <ul className="p-2">
-//     <li><a>Submenu 1</a></li>
-//     <li><a>Submenu 2</a></li>
-//   </ul>
-// </details>
-//     </li>
-//      <li><a>Item 3</a></li>
-//   </ul>
-//   </div>
-// </div>
-// </div> */}
+

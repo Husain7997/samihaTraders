@@ -1,0 +1,109 @@
+
+[
+    {
+      "id": 1,
+      "name": "Smartphone X",
+      "description": "A high-end smartphone with 128GB storage and 48MP camera.",
+      "price": 799.99,
+      "image": "https://via.placeholder.com/150?text=Smartphone+X"
+    },
+    {
+      "id": 2,
+      "name": "4K Smart TV",
+      "description": "55-inch Ultra HD Smart TV with HDR and voice control.",
+      "price": 599.99,
+      "image": "https://via.placeholder.com/150?text=4K+Smart+TV"
+    },
+    {
+      "id": 3,
+      "name": "Wireless Earbuds",
+      "description": "Bluetooth 5.0 earbuds with noise-canceling technology.",
+      "price": 129.99,
+      "image": "https://via.placeholder.com/150?text=Wireless+Earbuds"
+    },
+    {
+      "id": 4,
+      "name": "Gaming Laptop",
+      "description": "Powerful gaming laptop with Intel i7, 16GB RAM, and RTX 3070.",
+      "price": 1599.99,
+      "image": "https://via.placeholder.com/150?text=Gaming+Laptop"
+    },
+    {
+      "id": 5,
+      "name": "Smartwatch Pro",
+      "description": "Fitness and health tracking smartwatch with AMOLED display.",
+      "price": 199.99,
+      "image": "https://via.placeholder.com/150?text=Smartwatch+Pro"
+    },
+    {
+      "id": 6,
+      "name": "Bluetooth Speaker",
+      "description": "Portable Bluetooth speaker with deep bass and 24-hour battery life.",
+      "price": 89.99,
+      "image": "https://via.placeholder.com/150?text=Bluetooth+Speaker"
+    },
+    {
+      "id": 7,
+      "name": "Action Camera",
+      "description": "Waterproof 4K action camera with image stabilization.",
+      "price": 249.99,
+      "image": "https://via.placeholder.com/150?text=Action+Camera"
+    },
+    {
+      "id": 8,
+      "name": "Robot Vacuum Cleaner",
+      "description": "Smart robotic vacuum with automatic docking and room mapping.",
+      "price": 349.99,
+      "image": "https://via.placeholder.com/150?text=Robot+Vacuum"
+    },
+    {
+      "id": 9,
+      "name": "Electric Scooter",
+      "description": "Foldable electric scooter with 25km/h max speed and 20km range.",
+      "price": 499.99,
+      "image": "https://via.placeholder.com/150?text=Electric+Scooter"
+    },
+    {
+      "id": 10,
+      "name": "Wireless Charger",
+      "description": "10W fast wireless charging pad compatible with all Qi devices.",
+      "price": 39.99,
+      "image": "https://via.placeholder.com/150?text=Wireless+Charger"
+    },
+    {
+      "id": 11,
+      "name": "Smart Thermostat",
+      "description": "Wi-Fi-enabled smart thermostat with energy-saving features.",
+      "price": 149.99,
+      "image": "https://via.placeholder.com/150?text=Smart+Thermostat"
+    },
+    {
+      "id": 12,
+      "name": "Noise-Canceling Headphones",
+      "description": "Over-ear wireless headphones with active noise cancellation.",
+      "price": 299.99,
+      "image": "https://via.placeholder.com/150?text=Noise-Canceling+Headphones"
+    },
+    {
+      "id": 13,
+      "name": "Smart Doorbell",
+      "description": "Smart doorbell with video streaming and motion detection.",
+      "price": 179.99,
+      "image": "https://via.placeholder.com/150?text=Smart+Doorbell"
+    },
+    {
+      "id": 14,
+      "name": "Drone with Camera",
+      "description": "Compact drone with 4K camera and 30-minute flight time.",
+      "price": 599.99,
+      "image": "https://via.placeholder.com/150?text=Drone+with+Camera"
+    },
+    {
+      "id": 15,
+      "name": "Smart Home Hub",
+      "description": "Voice-controlled smart home hub for connecting all your devices.",
+      "price": 129.99,
+      "image": "https://via.placeholder.com/150?text=Smart+Home+Hub"
+    }
+  ]
+  
